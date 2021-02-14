@@ -4,7 +4,7 @@
 #define N 586
 int main(int argc, char **argv) {
   //omp_set_num_threads(2);//set number of threads here
-  int i, j, k;
+  int i, j, k, loop;
   double sum;
   double start, end; // used for timing
   double A[N][N], B[N][N], C[N][N];
@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
     }
   }
   start = omp_get_wtime(); //start time measurement
+  for(loop = 0; loop < 10; loop++){
 #pragma omp parallel for private(i,j,k,sum) shared(A,B,C) schedule(static)
     for (i = 0; i < N; i++) {
       for (j = 0; j < N; j++) {
@@ -27,15 +28,16 @@ int main(int argc, char **argv) {
         C[i][j] = sum;
       }
     }
-  end = omp_get_wtime(); //end time measurement
-  printf("Time of computation: %f seconds\n", end-start);
-/*  
-for(int i = 0; i < N; i++){
-    for(int j = 0; j < N; j++){
-      printf("%f", C[i][j]);
-    }
-    printf("\n");
+    end = omp_get_wtime(); //end time measurement
   }
-*/
+  printf("Time of computation: %f seconds\n", (end-start)/10);
+  /*  
+      for(int i = 0; i < N; i++){
+      for(int j = 0; j < N; j++){
+      printf("%f", C[i][j]);
+      }
+      printf("\n");
+      }
+   */
   return(0);
 }
