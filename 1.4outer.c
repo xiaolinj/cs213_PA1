@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define N 586
 int main(int argc, char **argv) {
-  //omp_set_num_threads(2);//set number of threads here
+  omp_set_num_threads(4);//set number of threads here
   int i, j, k, loop;
   double sum;
   double start, end; // used for timing
@@ -31,13 +31,5 @@ int main(int argc, char **argv) {
     end = omp_get_wtime(); //end time measurement
   }
   printf("Time of computation: %f seconds\n", (end-start)/10);
-  /*  
-      for(int i = 0; i < N; i++){
-      for(int j = 0; j < N; j++){
-      printf("%f", C[i][j]);
-      }
-      printf("\n");
-      }
-   */
   return(0);
 }

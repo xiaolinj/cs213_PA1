@@ -33,13 +33,5 @@ int main(int argc, char **argv) {
     end = omp_get_wtime(); //end time measurement
   }
   printf("Time of computation: %f seconds\n", (end-start)/10);
-  /*  
-      for(int i = 0; i < N; i++){
-      for(int j = 0; j < N; j++){
-      printf("%f", C[i][j]);
-      }
-      printf("\n");
-      }
-   */
   return(0);
 }

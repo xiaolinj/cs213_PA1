@@ -23,7 +23,8 @@ int main (int argc, char *argv[]) {
         }
         printf("Thread %d starting...\n",tid);
 
-        #pragma omp for schedule(static,chunk)
+        //#pragma omp for schedule(static,chunk)
+        #pragma omp for schedule(guided,chunk)
         for (i=0; i<N; i++){
             c[i] = a[i] + b[i];
             printf("Thread %d: c[%d]= %f\n",tid,i,c[i]);
